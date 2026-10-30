@@ -1,0 +1,34 @@
+pipeline{
+  agent any
+  stages{
+    stage ("PULL") 
+      {
+       steps { 
+          git 'https://github.com/cloudmaster2025/sonar.git'
+           } 
+        }
+     stage ("BUILD") 
+      {
+       steps { 
+          sh '/opt/maven/bin/mvn  clean package'
+           } 
+        }
+
+     stage ("TEST")
+      {
+       steps {
+       sh ''' /opt/maven/bin/mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+  	      -Dsonar.projectKey=my-app \
+  	      -Dsonar.projectName='my-app' \
+  	      -Dsonar.host.url=http://54.193.68.82:9000 \
+  	      -Dsonar.token=sqp_e85954c88eec7a607fa92c9aac55294674f47799 '''
+           }
+        }  
+      stage ("DEPLOY") 
+      {
+       steps { 
+          echo 'Deployment successfull'
+           } 
+        }
+     } 
+   }
