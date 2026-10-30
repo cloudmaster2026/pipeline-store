@@ -20,7 +20,7 @@ pipeline{
        sh ''' /opt/maven/bin/mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
   	      -Dsonar.projectKey=my-app \
   	      -Dsonar.projectName='my-app' \
-  	      -Dsonar.host.url=http://52.53.170.51/:9000 \
+  	      -Dsonar.host.url=http://52.53.170.51:9000 \
   	      -Dsonar.token=sqp_e85954c88eec7a607fa92c9aac55294674f47799 '''
            }
         }  
